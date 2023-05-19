@@ -5,6 +5,8 @@ sap.ui.define([
 
 	return Controller.extend("sap.ui.demo.walkthrough.controller.App", {
 
+		onInit: function () {
+			this.getView().addStyleClass(this.getOwnerComponent().getContentDensityClass());
+		}
 	});
-
 });

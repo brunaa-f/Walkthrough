@@ -4,11 +4,14 @@ sap.ui.define([
 	"sap/ui/Device"
 ], function (UIComponent, JSONModel, Device) {
 	"use strict";
+
 	return UIComponent.extend("sap.ui.demo.walkthrough.Component", {
+
 		metadata: {
 			interfaces: ["sap.ui.core.IAsyncContentCreation"],
 			manifest: "json"
 		},
+
 		init: function () {
 			// call the init function of the parent
 			UIComponent.prototype.init.apply(this, arguments);
@@ -21,8 +24,6 @@ sap.ui.define([
 			};
 			var oModel = new JSONModel(oData);
 			this.setModel(oModel);
-			// disable batch grouping for v2 API of the northwind service
-			this.getModel("invoice").setUseBatch(false);
 
 			// set device model
 			var oDeviceModel = new JSONModel(Device);
@@ -31,7 +32,19 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
+		},
+
+		getContentDensityClass: function () {
+			if (!this._sContentDensityClass) {
+				if (!Device.support.touch) {
+					this._sContentDensityClass = "sapUiSizeCompact";
+				} else {
+					this._sContentDensityClass = "sapUiSizeCozy";
+				}
+			}
+			return this._sContentDensityClass;
 		}
 
 	});
+
 });

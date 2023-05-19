@@ -6,7 +6,7 @@ sap.ui.define([
 
 	return Controller.extend("sap.ui.demo.walkthrough.controller.HelloPanel", {
 
-		onShowHello : function () {
+		onShowHello: function () {
 			// read msg from i18n model
 			var oBundle = this.getView().getModel("i18n").getResourceBundle();
 			var sRecipient = this.getView().getModel().getProperty("/recipient/name");
@@ -16,7 +16,7 @@ sap.ui.define([
 			MessageToast.show(sMsg);
 		},
 
-		onOpenDialog : function () {
+		onOpenDialog: function () {
 			// create dialog lazily
 			if (!this.pDialog) {
 				this.pDialog = this.loadFragment({
@@ -24,12 +24,12 @@ sap.ui.define([
 				});
 			}
 
-			this.pDialog.then(function(oDialog) {
+			this.pDialog.then(function (oDialog) {
 				oDialog.open();
 			});
 		},
 
-		onCloseDialog : function () {
+		onCloseDialog: function () {
 			// note: We don't need to chain to the pDialog promise, since this event-handler
 			// is only called from within the loaded dialog itself.
 			this.byId("helloDialog").close();
